@@ -32,9 +32,11 @@
     "graphql": "^15.0.0",
     "graphql-tools": "^6.0.7",
     "lodash": "^4.17.15",
+    "memfs": "^3.2.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "simple-git": "^2.6.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",

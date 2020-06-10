@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "yarn workspace server start:dev"
+    "dev": "yarn workspace server start:dev",
+    "test": "yarn workspace server test"
   },
   "workspaces": [
     "server"
