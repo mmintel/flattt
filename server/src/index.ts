@@ -2,7 +2,8 @@ import { NestFactory, NestApplication } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 export interface Options {
-  blueprintsPath: string
+  blueprintsPath: string,
+  recordsPath: string,
 }
 
 export default class Flattt {

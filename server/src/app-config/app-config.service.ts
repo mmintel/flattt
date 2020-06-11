@@ -8,4 +8,8 @@ export class AppConfigService {
   get blueprintsPath() {
     return this.options.blueprintsPath;
   }
+
+  get recordsPath() {
+    return this.options.recordsPath;
+  }
 }
