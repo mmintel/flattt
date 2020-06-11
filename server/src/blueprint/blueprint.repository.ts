@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { AppConfigService } from '../app-config/app-config.service';
+import { ConfigService } from '../config';
 import { JsonService } from '../json/json.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { Blueprint } from './blueprint.interface';
@@ -11,7 +11,7 @@ export class BlueprintRepository {
 
   constructor (
     private jsonService: JsonService,
-    private appConfigService: AppConfigService,
+    private appConfigService: ConfigService,
   ) {
     this.blueprintsPath = `${this.appConfigService.blueprintsPath}`
   }

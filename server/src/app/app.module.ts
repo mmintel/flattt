@@ -1,9 +1,9 @@
 import { Module, DynamicModule } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { BlueprintModule } from './blueprint';
-import { RecordModule } from './record';
-import { AppConfigModule } from './app-config';
-import { Options } from '.';
+import { BlueprintModule } from '../blueprint';
+import { RecordModule } from '../record';
+import { ConfigModule } from '../config'
+import { Options } from '..';
 
 @Module({
   imports: [
@@ -21,7 +21,7 @@ export class AppModule {
       module: AppModule,
       global: true,
       imports: [
-        AppConfigModule.register(options),
+        ConfigModule.register(options),
       ]
     }
   }

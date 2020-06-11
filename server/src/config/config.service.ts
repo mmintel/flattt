@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Options } from '..';
 
 @Injectable()
-export class AppConfigService {
+export class ConfigService {
   constructor(@Inject('CONFIG_OPTIONS') private options: Options) {}
 
   get blueprintsPath() {

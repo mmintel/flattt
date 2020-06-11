@@ -1,6 +1,6 @@
 import { Test } from '@nestjs/testing';
-import { AppConfigService } from '../app-config/app-config.service';
-import { JsonService } from '../json/json.service';
+import { ConfigService } from '../config';
+import { JsonService } from '../json';
 import { BlueprintRepository } from './blueprint.repository';
 
 const mockJsonService = () => ({
@@ -8,7 +8,7 @@ const mockJsonService = () => ({
   readFile: jest.fn(),
 });
 
-const mockAppConfigService = () => ({
+const mockConfigService = () => ({
   blueprintsPath: '/blueprints'
 })
 
@@ -22,13 +22,13 @@ describe('BlueprintRepository', () => {
       providers: [
         BlueprintRepository,
         { provide: JsonService, useFactory: mockJsonService },
-        { provide: AppConfigService, useFactory: mockAppConfigService },
+        { provide: ConfigService, useFactory: mockConfigService },
       ],
     }).compile();
 
     blueprintRepository = await module.get<BlueprintRepository>(BlueprintRepository);
     jsonService = await module.get<JsonService>(JsonService);
-    appConfigService = await module.get<AppConfigService>(AppConfigService);
+    appConfigService = await module.get<ConfigService>(ConfigService);
   });
 
   describe('find', () => {

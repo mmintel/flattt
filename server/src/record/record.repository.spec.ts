@@ -1,5 +1,5 @@
 import { Test } from '@nestjs/testing';
-import { AppConfigService } from '../app-config/app-config.service';
+import { ConfigService } from '../config';
 import { JsonService } from '../json/json.service';
 import { RecordRepository } from './record.repository';
 
@@ -8,7 +8,7 @@ const mockJsonService = () => ({
   readFile: jest.fn(),
 });
 
-const mockAppConfigService = () => ({
+const mockConfigService = () => ({
   recordsPath: '/records'
 })
 
@@ -22,13 +22,13 @@ describe('RecordRepository', () => {
       providers: [
         RecordRepository,
         { provide: JsonService, useFactory: mockJsonService },
-        { provide: AppConfigService, useFactory: mockAppConfigService },
+        { provide: ConfigService, useFactory: mockConfigService },
       ],
     }).compile();
 
     recordRepository = await module.get<RecordRepository>(RecordRepository);
     jsonService = await module.get<JsonService>(JsonService);
-    appConfigService = await module.get<AppConfigService>(AppConfigService);
+    appConfigService = await module.get<ConfigService>(ConfigService);
   });
 
   describe('find', () => {

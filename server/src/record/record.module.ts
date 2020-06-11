@@ -1,5 +1,5 @@
 import { JsonModule } from '../json';
-import { AppConfigModule } from '../app-config';
+import { ConfigModule } from '../config';
 import { Module } from '@nestjs/common';
 import { RecordRepository } from './record.repository';
 import { RecordResolver } from './record.resolver';
@@ -7,7 +7,7 @@ import { RecordService } from './record.service';
 
 @Module({
   imports: [
-    AppConfigModule,
+    ConfigModule,
     JsonModule,
   ],
   providers: [

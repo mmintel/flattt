@@ -8,6 +8,7 @@
     "dev": "yarn workspace @flattt/server start:dev",
     "build": "yarn workspace @flattt/server build",
     "test": "yarn workspace @flattt/server test",
+    "test:e2e": "yarn workspace @flattt/server test:e2e",
     "example": "yarn workspace example start"
   },
   "workspaces": [

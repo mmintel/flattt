@@ -1,5 +1,5 @@
 import { NestFactory, NestApplication } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app/app.module';
 
 export interface Options {
   blueprintsPath: string,

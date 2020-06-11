@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { AppConfigService } from '../app-config/app-config.service';
+import { ConfigService } from '../config';
 import { JsonService } from '../json/json.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { Record } from './record.interface';
@@ -11,7 +11,7 @@ export class RecordRepository {
 
   constructor (
     private jsonService: JsonService,
-    private appConfigService: AppConfigService,
+    private appConfigService: ConfigService,
   ) {
     this.recordsPath = `${this.appConfigService.recordsPath}`
   }
