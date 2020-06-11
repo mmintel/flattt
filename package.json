@@ -5,10 +5,13 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "dev": "yarn workspace server start:dev",
-    "test": "yarn workspace server test"
+    "dev": "yarn workspace @flattt/server start:dev",
+    "build": "yarn workspace @flattt/server build",
+    "test": "yarn workspace @flattt/server test",
+    "example": "yarn workspace example start"
   },
   "workspaces": [
+    "example",
     "server"
   ]
 }

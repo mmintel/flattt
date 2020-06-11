@@ -1,4 +1,5 @@
-import { ConfigService } from '../config/config.service';
+import { join } from 'path';
+import { AppConfigService } from '../app-config/app-config.service';
 import { JsonService } from '../json/json.service';
 import { Injectable, Logger } from '@nestjs/common';
 import { Blueprint } from './blueprint.interface';
@@ -10,9 +11,9 @@ export class BlueprintRepository {
 
   constructor (
     private jsonService: JsonService,
-    private configService: ConfigService
+    private appConfigService: AppConfigService,
   ) {
-    this.blueprintsPath = `${this.configService.get('flattt.blueprintsPath')}`
+    this.blueprintsPath = `${this.appConfigService.blueprintsPath}`
   }
 
   async find(): Promise<Array<Blueprint>> {
@@ -21,7 +22,7 @@ export class BlueprintRepository {
   }
 
   async findOne(path: string): Promise<Blueprint> {
-    const filePath = `${this.blueprintsPath}/${path}`;
+    const filePath = join(this.blueprintsPath, path);
     this.logger.verbose('Called findOne with %s', filePath);
     return this.jsonService.readFile<Blueprint>(filePath);
   }

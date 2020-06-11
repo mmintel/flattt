@@ -11,13 +11,13 @@ describe('JsonService', () => {
   beforeEach(async () => {
     vol.reset();
 
-    const module = await Test.createTestingModule({
+    const moduleRef = await Test.createTestingModule({
       providers: [
         JsonService,
       ],
     }).compile();
 
-    jsonService = await module.get<JsonService>(JsonService);
+    jsonService = await moduleRef.get<JsonService>(JsonService);
   });
 
   describe('readFile', () => {

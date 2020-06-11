@@ -1,10 +1,11 @@
 {
-  "name": "server",
-  "version": "0.0.1",
+  "name": "@flattt/server",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
+  "main": "dist/index.js",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
@@ -22,6 +23,7 @@
   },
   "dependencies": {
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/graphql": "^7.4.1",
     "@nestjs/platform-express": "^7.0.0",
