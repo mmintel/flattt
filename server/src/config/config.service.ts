@@ -5,11 +5,11 @@ import { Options } from '..';
 export class ConfigService {
   constructor(@Inject('CONFIG_OPTIONS') private options: Options) {}
 
-  get blueprintsPath() {
+  get blueprintsPath(): string {
     return this.options.blueprintsPath;
   }
 
-  get recordsPath() {
+  get recordsPath(): string {
     return this.options.recordsPath;
   }
 }

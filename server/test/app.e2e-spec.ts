@@ -34,27 +34,4 @@ describe('AppModule (e2e)', () => {
       .set('Accept', 'text/html')
       .expect(200)
   });
-
-  test('blueprints (Query)', () => {
-    return request(app.getHttpServer())
-      .post('/graphql')
-      .send({
-        operationName: null,
-        variables: {},
-        query: `
-          query {
-            blueprints {
-              title
-            }
-          }
-        `,
-      })
-      .expect(200)
-      .expect(({ body }) => {
-        const blueprints = body.data.blueprints;
-        expect(blueprints.length).toBeGreaterThan(0);
-        expect(blueprints).toContainEqual({ title: 'Document' });
-        expect(blueprints).toContainEqual({ title: 'Collections' });
-      })
-  });
 });

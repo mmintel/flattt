@@ -11,9 +11,9 @@ export class BlueprintRepository {
 
   constructor (
     private jsonService: JsonService,
-    private appConfigService: ConfigService,
+    private configService: ConfigService,
   ) {
-    this.blueprintsPath = `${this.appConfigService.blueprintsPath}`
+    this.blueprintsPath = `${this.configService.blueprintsPath}`
   }
 
   async find(): Promise<Array<Blueprint>> {

@@ -11,9 +11,9 @@ export class RecordRepository {
 
   constructor (
     private jsonService: JsonService,
-    private appConfigService: ConfigService,
+    private configService: ConfigService,
   ) {
-    this.recordsPath = `${this.appConfigService.recordsPath}`
+    this.recordsPath = `${this.configService.recordsPath}`
   }
 
   async find(): Promise<Array<Record>> {

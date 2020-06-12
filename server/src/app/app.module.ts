@@ -21,11 +21,8 @@ import { Options } from '..';
 })
 export class AppModule {
   public static register(options: Options): DynamicModule {
-    if (!options) throw new Error('Please provide options.');
-
     return {
       module: AppModule,
-      global: true,
       imports: [
         ConfigModule.register(options),
       ]
