@@ -1,5 +1,5 @@
 import * as fs from 'fs-extra';
-import fg from 'fast-glob'
+import fg from 'fast-glob';
 import { extname } from 'path';
 import { Injectable, Logger } from '@nestjs/common';
 
@@ -13,20 +13,22 @@ export class JsonService {
     try {
       return await fs.readJson(json);
     } catch {
-      this.logger.warn(`could not read file: ${path}`)
+      this.logger.warn(`could not read file: ${path}`);
       return null;
     }
   }
 
   async readDir<T>(path: string): Promise<Array<T>> {
     this.logger.verbose(`read dir: ${path}`);
-    const dir = await fg(`${path}/*.json`)
-    return Promise.all(dir.map(async (fileName: string) => {
-      return this.readFile<any>(fileName)
-    }))
+    const dir = await fg(`${path}/*.json`);
+    return Promise.all(
+      dir.map(async (fileName: string) => {
+        return this.readFile<any>(fileName);
+      }),
+    );
   }
 
-  private ensureJson(path:string) {
+  private ensureJson(path: string) {
     let jsonPath = path;
     const json = '.json';
     const ext = extname(path);

@@ -6,8 +6,8 @@ import { AppModule } from '../src/app';
 
 const options = {
   blueprintsPath: path.resolve('../example/data/blueprints'),
-  recordsPath: path.resolve('../example/data/content')
-}
+  recordsPath: path.resolve('../example/data/content'),
+};
 
 describe('AppModule (e2e)', () => {
   let app: INestApplication;
@@ -32,6 +32,6 @@ describe('AppModule (e2e)', () => {
     return request(app.getHttpServer())
       .get('/graphql')
       .set('Accept', 'text/html')
-      .expect(200)
+      .expect(200);
   });
 });

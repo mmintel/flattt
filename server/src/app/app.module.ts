@@ -2,7 +2,7 @@ import { Module, DynamicModule } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { BlueprintModule } from '../blueprint';
 import { RecordModule } from '../record';
-import { ConfigModule } from '../config'
+import { ConfigModule } from '../config';
 import { AppController } from './app.controller';
 import { Options } from '..';
 
@@ -10,22 +10,18 @@ import { Options } from '..';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: true,
-      playground: true
+      playground: true,
     }),
     BlueprintModule,
-    RecordModule
+    RecordModule,
   ],
-  controllers: [
-    AppController
-  ]
+  controllers: [AppController],
 })
 export class AppModule {
   public static register(options: Options): DynamicModule {
     return {
       module: AppModule,
-      imports: [
-        ConfigModule.register(options),
-      ]
-    }
+      imports: [ConfigModule.register(options)],
+    };
   }
 }

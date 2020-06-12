@@ -9,11 +9,11 @@ export class RecordRepository {
   private logger = new Logger('RecordRepository');
   private recordsPath: string;
 
-  constructor (
+  constructor(
     private jsonService: JsonService,
     private configService: ConfigService,
   ) {
-    this.recordsPath = `${this.configService.recordsPath}`
+    this.recordsPath = `${this.configService.recordsPath}`;
   }
 
   async find(): Promise<Array<Record>> {

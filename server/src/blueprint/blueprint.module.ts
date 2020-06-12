@@ -6,18 +6,8 @@ import { BlueprintResolver } from './blueprint.resolver';
 import { BlueprintService } from './blueprint.service';
 
 @Module({
-  imports: [
-    ConfigModule,
-    JsonModule,
-  ],
-  providers: [
-    BlueprintResolver,
-    BlueprintService,
-    BlueprintRepository
-  ],
-  exports: [
-    BlueprintService
-  ]
+  imports: [ConfigModule, JsonModule],
+  providers: [BlueprintResolver, BlueprintService, BlueprintRepository],
+  exports: [BlueprintService],
 })
-
 export class BlueprintModule {}

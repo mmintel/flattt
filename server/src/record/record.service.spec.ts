@@ -26,10 +26,10 @@ describe('RecordService', () => {
   describe('getRecords', () => {
     it('calls the recordRepository and returns the records', async () => {
       const mockRecords = [1, 2];
-      recordRepository.find.mockResolvedValue(mockRecords)
+      recordRepository.find.mockResolvedValue(mockRecords);
       const result = await recordService.getRecords();
       expect(recordRepository.find).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockRecords)
-    })
-  })
+      expect(result).toEqual(mockRecords);
+    });
+  });
 });

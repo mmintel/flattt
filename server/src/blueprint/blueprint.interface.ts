@@ -1,3 +1,3 @@
 export interface Blueprint {
-  title: string
+  title: string;
 }

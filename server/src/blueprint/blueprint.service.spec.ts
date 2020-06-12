@@ -20,16 +20,18 @@ describe('BlueprintService', () => {
     }).compile();
 
     blueprintService = await module.get<BlueprintService>(BlueprintService);
-    blueprintRepository = await module.get<BlueprintRepository>(BlueprintRepository);
+    blueprintRepository = await module.get<BlueprintRepository>(
+      BlueprintRepository,
+    );
   });
 
   describe('getBlueprints', () => {
     it('calls the blueprintRepository and returns the blueprints', async () => {
       const mockBlueprints = [1, 2];
-      blueprintRepository.find.mockResolvedValue(mockBlueprints)
+      blueprintRepository.find.mockResolvedValue(mockBlueprints);
       const result = await blueprintService.getBlueprints();
       expect(blueprintRepository.find).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockBlueprints)
-    })
-  })
+      expect(result).toEqual(mockBlueprints);
+    });
+  });
 });

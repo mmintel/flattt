@@ -9,8 +9,8 @@ const mockJsonService = () => ({
 });
 
 const mockConfigService = () => ({
-  blueprintsPath: '/blueprints'
-})
+  blueprintsPath: '/blueprints',
+});
 
 describe('BlueprintRepository', () => {
   let blueprintRepository;
@@ -26,7 +26,9 @@ describe('BlueprintRepository', () => {
       ],
     }).compile();
 
-    blueprintRepository = await module.get<BlueprintRepository>(BlueprintRepository);
+    blueprintRepository = await module.get<BlueprintRepository>(
+      BlueprintRepository,
+    );
     jsonService = await module.get<JsonService>(JsonService);
     appConfigService = await module.get<ConfigService>(ConfigService);
   });
@@ -34,23 +36,24 @@ describe('BlueprintRepository', () => {
   describe('find', () => {
     it('calls the jsonService and returns the blueprints', async () => {
       const mockFiles = [{ title: 'foo' }, { title: 'bar' }];
-      jsonService.readDir.mockResolvedValue(mockFiles)
+      jsonService.readDir.mockResolvedValue(mockFiles);
       const result = await blueprintRepository.find();
       expect(jsonService.readDir).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockFiles)
+      expect(result).toEqual(mockFiles);
     });
   });
-
 
   describe('findOne', () => {
     it('calls the jsonService and returns the blueprint', async () => {
       const mockFile = { title: 'foo' };
       const path = '/foo';
-      jsonService.readFile.mockResolvedValue(mockFile)
+      jsonService.readFile.mockResolvedValue(mockFile);
       const result = await blueprintRepository.findOne(path);
       expect(jsonService.readFile).toHaveBeenCalledTimes(1);
-      expect(jsonService.readFile).toHaveBeenCalledWith(appConfigService.blueprintsPath + path);
-      expect(result).toEqual(mockFile)
+      expect(jsonService.readFile).toHaveBeenCalledWith(
+        appConfigService.blueprintsPath + path,
+      );
+      expect(result).toEqual(mockFile);
     });
   });
 });

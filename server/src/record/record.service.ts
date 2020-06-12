@@ -10,6 +10,6 @@ export class RecordService {
   async getRecords() {
     this.logger.verbose('Called getRecords');
 
-    return this.recordRepository.find()
+    return this.recordRepository.find();
   }
 }

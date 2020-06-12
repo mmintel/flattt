@@ -7,14 +7,14 @@ import { RecordService } from './record.service';
 export class RecordResolver {
   private logger = new Logger('RecordResolver');
 
-  constructor(
-    private recordService: RecordService,
-  ) {}
+  constructor(private recordService: RecordService) {}
 
   @Query(() => [RecordType])
   async records() {
     const records = await this.recordService.getRecords();
-    this.logger.verbose(`Received records from service: ${JSON.stringify(records)}`)
+    this.logger.verbose(
+      `Received records from service: ${JSON.stringify(records)}`,
+    );
     return records;
   }
 }

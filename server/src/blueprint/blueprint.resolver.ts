@@ -7,14 +7,14 @@ import { BlueprintService } from './blueprint.service';
 export class BlueprintResolver {
   private logger = new Logger('BlueprintResolver');
 
-  constructor(
-    private blueprintService: BlueprintService,
-  ) {}
+  constructor(private blueprintService: BlueprintService) {}
 
   @Query(() => [BlueprintType])
   async blueprints() {
     const blueprints = await this.blueprintService.getBlueprints();
-    this.logger.verbose(`Received blueprints from service: ${JSON.stringify(blueprints)}`)
+    this.logger.verbose(
+      `Received blueprints from service: ${JSON.stringify(blueprints)}`,
+    );
     return blueprints;
   }
 }

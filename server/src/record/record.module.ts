@@ -6,18 +6,8 @@ import { RecordResolver } from './record.resolver';
 import { RecordService } from './record.service';
 
 @Module({
-  imports: [
-    ConfigModule,
-    JsonModule,
-  ],
-  providers: [
-    RecordResolver,
-    RecordService,
-    RecordRepository
-  ],
-  exports: [
-    RecordService
-  ]
+  imports: [ConfigModule, JsonModule],
+  providers: [RecordResolver, RecordService, RecordRepository],
+  exports: [RecordService],
 })
-
 export class RecordModule {}

@@ -5,7 +5,7 @@ import { CONFIG_OPTIONS } from './constants';
 const mockOptions = {
   blueprintsPath: '/blueprints',
   recordsPath: '/records',
-}
+};
 
 describe('ConfigService', () => {
   let configService: ConfigService;

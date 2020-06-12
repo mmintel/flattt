@@ -25,10 +25,10 @@ describe('BlueprintService', () => {
   describe('getBlueprints', () => {
     it('calls the blueprintService and returns the blueprints', async () => {
       const mockBlueprints = [1, 2];
-      blueprintService.getBlueprints.mockResolvedValue(mockBlueprints)
+      blueprintService.getBlueprints.mockResolvedValue(mockBlueprints);
       const result = await blueprintResolver.blueprints();
       expect(blueprintService.getBlueprints).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockBlueprints)
-    })
-  })
+      expect(result).toEqual(mockBlueprints);
+    });
+  });
 });

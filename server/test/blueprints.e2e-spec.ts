@@ -9,13 +9,13 @@ import { JsonService } from '../src/json';
 
 const mockOptions = {
   blueprintsPath: path.resolve('../example/data/blueprints'),
-  recordsPath: path.resolve('../example/data/content')
-}
+  recordsPath: path.resolve('../example/data/content'),
+};
 
 const mockJsonService = () => ({
   readFile: jest.fn(),
   readDir: jest.fn(),
-})
+});
 
 describe('BlueprintModule (e2e)', () => {
   let app: INestApplication;
@@ -41,7 +41,7 @@ describe('BlueprintModule (e2e)', () => {
   });
 
   test('blueprints (Query)', () => {
-    const mockFiles = [ { title: 'foo' }, { title: 'bar' }];
+    const mockFiles = [{ title: 'foo' }, { title: 'bar' }];
     jsonService.readDir.mockResolvedValue(mockFiles);
     return request(app.getHttpServer())
       .post('/graphql')
@@ -62,6 +62,6 @@ describe('BlueprintModule (e2e)', () => {
         expect(blueprints.length).toBeGreaterThan(0);
         expect(blueprints).toContainEqual(mockFiles[0]);
         expect(blueprints).toContainEqual(mockFiles[1]);
-      })
+      });
   });
 });

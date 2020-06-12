@@ -9,11 +9,11 @@ export class BlueprintRepository {
   private logger = new Logger('BlueprintRepository');
   private blueprintsPath: string;
 
-  constructor (
+  constructor(
     private jsonService: JsonService,
     private configService: ConfigService,
   ) {
-    this.blueprintsPath = `${this.configService.blueprintsPath}`
+    this.blueprintsPath = `${this.configService.blueprintsPath}`;
   }
 
   async find(): Promise<Array<Blueprint>> {

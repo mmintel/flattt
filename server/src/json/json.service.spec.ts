@@ -12,9 +12,7 @@ describe('JsonService', () => {
     vol.reset();
 
     const moduleRef = await Test.createTestingModule({
-      providers: [
-        JsonService,
-      ],
+      providers: [JsonService],
     }).compile();
 
     jsonService = await moduleRef.get<JsonService>(JsonService);
@@ -23,19 +21,25 @@ describe('JsonService', () => {
   describe('readFile', () => {
     describe('reads a single json file from storage', () => {
       test('reads the file with extension', async () => {
-        const mockFile = { title: 'Document' }
-        vol.fromJSON({
-          './documents.json': JSON.stringify(mockFile),
-        }, '/content');
+        const mockFile = { title: 'Document' };
+        vol.fromJSON(
+          {
+            './documents.json': JSON.stringify(mockFile),
+          },
+          '/content',
+        );
         const file = await jsonService.readFile('/content/documents.json');
         expect(file).toEqual(mockFile);
       });
 
       test('reads the file without extension', async () => {
-        const mockFile = { title: 'Document' }
-        vol.fromJSON({
-          './documents.json': JSON.stringify(mockFile),
-        }, '/content');
+        const mockFile = { title: 'Document' };
+        vol.fromJSON(
+          {
+            './documents.json': JSON.stringify(mockFile),
+          },
+          '/content',
+        );
         const file = await jsonService.readFile('/content/documents');
         expect(file).toEqual(mockFile);
       });
@@ -44,7 +48,7 @@ describe('JsonService', () => {
         vol.fromJSON({}, '/content');
         const file = await jsonService.readFile('/content/documents');
         expect(file).toEqual(null);
-      })
+      });
     });
   });
 
@@ -55,16 +59,19 @@ describe('JsonService', () => {
         const mockFile2 = { id: 2 };
         const mockFile3 = { id: 3 };
 
-        vol.fromJSON({
-          './foo.json': JSON.stringify(mockFile1),
-          './bar.json': JSON.stringify(mockFile2),
-          './baz.json': JSON.stringify(mockFile3),
-        }, '/content');
+        vol.fromJSON(
+          {
+            './foo.json': JSON.stringify(mockFile1),
+            './bar.json': JSON.stringify(mockFile2),
+            './baz.json': JSON.stringify(mockFile3),
+          },
+          '/content',
+        );
 
         const files = await jsonService.readDir('/content');
-        expect(files).toContainEqual(mockFile1)
-        expect(files).toContainEqual(mockFile2)
-        expect(files).toContainEqual(mockFile3)
+        expect(files).toContainEqual(mockFile1);
+        expect(files).toContainEqual(mockFile2);
+        expect(files).toContainEqual(mockFile3);
       });
 
       test('only jsons', async () => {
@@ -72,17 +79,20 @@ describe('JsonService', () => {
         const mockFile2 = { id: 2 };
         const mockFile3 = { id: 3 };
 
-        vol.fromJSON({
-          './foo.json': JSON.stringify(mockFile1),
-          './bar.txt': JSON.stringify(mockFile2),
-          './baz.json': JSON.stringify(mockFile3),
-        }, '/content');
+        vol.fromJSON(
+          {
+            './foo.json': JSON.stringify(mockFile1),
+            './bar.txt': JSON.stringify(mockFile2),
+            './baz.json': JSON.stringify(mockFile3),
+          },
+          '/content',
+        );
 
         const files = await jsonService.readDir('/content');
-        expect(files).toContainEqual(mockFile1)
-        expect(files).toContainEqual(mockFile3)
-        expect(files).not.toContainEqual(mockFile2)
+        expect(files).toContainEqual(mockFile1);
+        expect(files).toContainEqual(mockFile3);
+        expect(files).not.toContainEqual(mockFile2);
       });
-    })
-  })
+    });
+  });
 });

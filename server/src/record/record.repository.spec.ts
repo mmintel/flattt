@@ -9,8 +9,8 @@ const mockJsonService = () => ({
 });
 
 const mockConfigService = () => ({
-  recordsPath: '/records'
-})
+  recordsPath: '/records',
+});
 
 describe('RecordRepository', () => {
   let recordRepository;
@@ -26,7 +26,9 @@ describe('RecordRepository', () => {
       ],
     }).compile();
 
-    recordRepository = await moduleFixture.get<RecordRepository>(RecordRepository);
+    recordRepository = await moduleFixture.get<RecordRepository>(
+      RecordRepository,
+    );
     jsonService = await moduleFixture.get<JsonService>(JsonService);
     appConfigService = await moduleFixture.get<ConfigService>(ConfigService);
   });
@@ -34,23 +36,24 @@ describe('RecordRepository', () => {
   describe('find', () => {
     it('calls the jsonService and returns the records', async () => {
       const mockFiles = [{ title: 'foo' }, { title: 'bar' }];
-      jsonService.readDir.mockResolvedValue(mockFiles)
+      jsonService.readDir.mockResolvedValue(mockFiles);
       const result = await recordRepository.find();
       expect(jsonService.readDir).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockFiles)
+      expect(result).toEqual(mockFiles);
     });
   });
-
 
   describe('findOne', () => {
     it('calls the jsonService and returns the record', async () => {
       const mockFile = { title: 'foo' };
       const path = '/foo';
-      jsonService.readFile.mockResolvedValue(mockFile)
+      jsonService.readFile.mockResolvedValue(mockFile);
       const result = await recordRepository.findOne(path);
       expect(jsonService.readFile).toHaveBeenCalledTimes(1);
-      expect(jsonService.readFile).toHaveBeenCalledWith(appConfigService.recordsPath + path);
-      expect(result).toEqual(mockFile)
+      expect(jsonService.readFile).toHaveBeenCalledWith(
+        appConfigService.recordsPath + path,
+      );
+      expect(result).toEqual(mockFile);
     });
   });
 });

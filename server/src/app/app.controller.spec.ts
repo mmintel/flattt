@@ -14,7 +14,9 @@ describe('AppController', () => {
 
   describe('app', () => {
     it('should return "Here will be my amazing react frontend"', () => {
-      expect(appController.app()).toBe('Here will be my amazing react frontend');
+      expect(appController.app()).toBe(
+        'Here will be my amazing react frontend',
+      );
     });
   });
 });

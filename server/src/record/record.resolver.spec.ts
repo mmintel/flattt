@@ -25,10 +25,10 @@ describe('RecordService', () => {
   describe('getRecords', () => {
     it('calls the recordService and returns the records', async () => {
       const mockRecords = [1, 2];
-      recordService.getRecords.mockResolvedValue(mockRecords)
+      recordService.getRecords.mockResolvedValue(mockRecords);
       const result = await recordResolver.records();
       expect(recordService.getRecords).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockRecords)
-    })
-  })
+      expect(result).toEqual(mockRecords);
+    });
+  });
 });

@@ -1,2 +1,2 @@
-export * from './json.module'
-export * from './json.service'
+export * from './json.module';
+export * from './json.service';

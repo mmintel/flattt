@@ -10,6 +10,6 @@ export class BlueprintService {
   async getBlueprints() {
     this.logger.verbose('Called getBlueprints');
 
-    return this.blueprintRepository.find()
+    return this.blueprintRepository.find();
   }
 }

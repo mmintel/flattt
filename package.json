@@ -9,6 +9,7 @@
     "build": "yarn workspace @flattt/server build",
     "test": "yarn workspace @flattt/server test",
     "test:e2e": "yarn workspace @flattt/server test:e2e",
+    "format": "yarn workspace @flattt/server format",
     "example": "yarn workspace example start"
   },
   "workspaces": [
