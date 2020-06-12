@@ -1,4 +1,4 @@
-import { Test } from '@nestjs/testing';
+import { Test, TestingModule } from '@nestjs/testing';
 import { ConfigService } from '../config';
 import { JsonService } from '../json/json.service';
 import { RecordRepository } from './record.repository';
@@ -18,7 +18,7 @@ describe('RecordRepository', () => {
   let appConfigService;
 
   beforeEach(async () => {
-    const module = await Test.createTestingModule({
+    const moduleFixture: TestingModule = await Test.createTestingModule({
       providers: [
         RecordRepository,
         { provide: JsonService, useFactory: mockJsonService },
@@ -26,9 +26,9 @@ describe('RecordRepository', () => {
       ],
     }).compile();
 
-    recordRepository = await module.get<RecordRepository>(RecordRepository);
-    jsonService = await module.get<JsonService>(JsonService);
-    appConfigService = await module.get<ConfigService>(ConfigService);
+    recordRepository = await moduleFixture.get<RecordRepository>(RecordRepository);
+    jsonService = await moduleFixture.get<JsonService>(JsonService);
+    appConfigService = await moduleFixture.get<ConfigService>(ConfigService);
   });
 
   describe('find', () => {

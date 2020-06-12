@@ -4,20 +4,22 @@ import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { GraphQLModule } from '@nestjs/graphql';
 import { BlueprintModule } from '../src/blueprint';
-import { ConfigModule, ConfigService } from '../src/config';
+import { ConfigModule } from '../src/config';
+import { JsonService } from '../src/json';
 
 const mockOptions = {
   blueprintsPath: path.resolve('../example/data/blueprints'),
   recordsPath: path.resolve('../example/data/content')
 }
 
-const mockConfigService = () => ({
-  blueprintsPath: path.resolve('../example/data/blueprints'),
-  recordsPath: path.resolve('../example/data/content')
+const mockJsonService = () => ({
+  readFile: jest.fn(),
+  readDir: jest.fn(),
 })
 
 describe('BlueprintModule (e2e)', () => {
   let app: INestApplication;
+  let jsonService;
 
   beforeEach(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -28,21 +30,19 @@ describe('BlueprintModule (e2e)', () => {
         }),
         BlueprintModule,
       ],
-      providers: [
-        // { provide: 'CONFIG_OPTIONS', useValue: mockOptions },
-        // { provide: ConfigService, useFactory: mockConfigService },
-      ],
-      // exports: [
-      //   'OPTIONS'
-      // ]
     })
+      .overrideProvider(JsonService)
+      .useFactory({ factory: mockJsonService })
       .compile();
 
     app = moduleFixture.createNestApplication();
+    jsonService = await app.get<JsonService>(JsonService);
     await app.init();
   });
 
   test('blueprints (Query)', () => {
+    const mockFiles = [ { title: 'foo' }, { title: 'bar' }];
+    jsonService.readDir.mockResolvedValue(mockFiles);
     return request(app.getHttpServer())
       .post('/graphql')
       .send({
@@ -60,8 +60,8 @@ describe('BlueprintModule (e2e)', () => {
       .expect(({ body }) => {
         const blueprints = body.data.blueprints;
         expect(blueprints.length).toBeGreaterThan(0);
-        expect(blueprints).toContainEqual({ title: 'Document' });
-        expect(blueprints).toContainEqual({ title: 'Collections' });
+        expect(blueprints).toContainEqual(mockFiles[0]);
+        expect(blueprints).toContainEqual(mockFiles[1]);
       })
   });
 });
